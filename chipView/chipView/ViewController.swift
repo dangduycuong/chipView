@@ -10,6 +10,7 @@ import MessageUI
 import SafariServices
 import VisionKit
 import PDFKit
+import Contacts
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     let mailButton = UIButton()
@@ -46,7 +47,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             if let data = fileData {
                 composer.addAttachmentData(data, mimeType: "mimeType", fileName: fileName)
             }
-            composer.setMessageBody("Hi, I'd like to know ", isHTML: false)
+            composer.setMessageBody("<h1> Hi, I'd like to know </h1>", isHTML: true)
             present(composer, animated: true)
         } else {
             guard let url = URL(string: "https://www.google.com") else {
@@ -150,7 +151,84 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func tapToOpenCamera(_ sender: Any) {
         openVisionKit()
     }
-
+    
+    
+    @IBAction func tapToGetContact(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChoseContactViewController") as! ChoseContactViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+//    func getAllContacts() {
+//
+//        let status = CNContactStore.authorizationStatus(for: CNEntityType.contacts) as CNAuthorizationStatus
+//
+//        if status == CNAuthorizationStatus.denied {
+//
+//            let alert = UIAlertController(title:nil, message:"This app previously was refused permissions to contacts; Please go to settings and grant permission to this app so it can use contacts", preferredStyle:UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title:"OK", style:UIAlertAction.Style.default, handler: nil))
+//            self.present(alert, animated:true, completion: nil)
+//            return
+//        }
+//
+//        let store = CNContactStore()
+//        store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
+//            if !granted {
+//
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    // user didn't grant access;
+//                    // so, again, tell user here why app needs permissions in order  to do it's job;
+//                    // this is dispatched to the main queue because this request could be running on background thread
+//                })
+//                return
+//            }
+//
+//        })
+//        store.requestAccessForEntityType(CNEntityType.Contacts) { (granted: Bool, error: NSError?) -> Void in
+//
+//            if !granted {
+//
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//
+//                    // user didn't grant access;
+//                    // so, again, tell user here why app needs permissions in order  to do it's job;
+//                    // this is dispatched to the main queue because this request could be running on background thread
+//                })
+//                return
+//            }
+//
+//            let arrContacts = NSMutableArray() // Declare this array globally, so you can access it in whole class.
+//
+//            let request = CNContactFetchRequest(keysToFetch:[CNContactIdentifierKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey, CNContactPhoneNumbersKey, CNContactFormatter.descriptorForRequiredKeysForStyle(CNContactFormatterStyle.FullName)])
+//
+//            do {
+//
+//                try store.enumerateContactsWithFetchRequest(request, usingBlock: { (contact:CNContact, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
+//
+//                    let arrEmail = contact.emailAddresses as NSArray
+//
+//                    if arrEmail.count > 0 {
+//
+//                        let dict = NSMutableDictionary()
+//                        dict.setValue((contact.givenName+" "+contact.familyName), forKey: "name")
+//                        let emails = NSMutableArray()
+//
+//                        for index in 0...arrEmail.count {
+//
+//                            let email:CNLabeledValue = arrEmail.objectAtIndex(index) as! CNLabeledValue
+//                            emails .addObject(email.value as! String)
+//                        }
+//                        dict.setValue(emails, forKey: "email")
+//                        arrContacts.addObject(dict) // Either retrieve only those contact who have email and store only name and email
+//                    }
+//                    arrContacts.addObject(contact) // either store all contact with all detail and simplifies later on
+//                })
+//            } catch {
+//
+//                return;
+//            }
+//        }
+//    }
+    
 }
 
 
@@ -169,6 +247,8 @@ extension ViewController: MFMailComposeViewControllerDelegate {
             break
         case .sent:
             showAlert(title: "Notice", message: "Da gui email")
+        default:
+            break
         }
         controller.dismiss(animated: true, completion: nil)
     }

@@ -21,9 +21,11 @@
 			</array>
 		</dict>
 	</dict>
-    <key>NSCameraUsageDescription</key>
-    <string>Access camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Access camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Library</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Contact Use.</string>
 </dict>
 </plist>
