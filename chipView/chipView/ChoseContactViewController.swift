@@ -72,8 +72,14 @@ class ChoseContactViewController: UIViewController, UITableViewDelegate, UITable
                         item.firstName = contact.givenName
                         item.lastName = contact.familyName
                         item.telephone = contact.phoneNumbers.first?.value.stringValue
-                        item.emailAddresses = contact.emailAddresses.
-                        //                        item.iconContact = contact.imageData
+                        
+                        for email in contact.emailAddresses{
+                            if let emailAddresses = email.value as? String {
+                                item.emailAddresses = emailAddresses
+                                print("This contact already has this email", emailAddresses)
+                                return
+                            }
+                        }
                         self.contacts.append(item)
                         self.suggestContacts.append(item)
                         //                        self.contacts.append(FetchedContact(firstName: contact.givenName, lastName: contact.familyName, telephone: contact.phoneNumbers.first?.value.stringValue ?? "", iconContact: contact.imageData))

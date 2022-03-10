@@ -19,6 +19,7 @@
 		AC23EA2427D8B4C800549148 /* ChoseContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC23EA2327D8B4C800549148 /* ChoseContactViewController.swift */; };
 		AC23EA2827D8B53B00549148 /* ChoseContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC23EA2627D8B53B00549148 /* ChoseContactCell.swift */; };
 		AC23EA2927D8B53B00549148 /* ChoseContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC23EA2727D8B53B00549148 /* ChoseContactCell.xib */; };
+		AC616BA827D99918001218F3 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC616BA727D99918001218F3 /* ContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		AC23EA2327D8B4C800549148 /* ChoseContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseContactViewController.swift; sourceTree = "<group>"; };
 		AC23EA2627D8B53B00549148 /* ChoseContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseContactCell.swift; sourceTree = "<group>"; };
 		AC23EA2727D8B53B00549148 /* ChoseContactCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoseContactCell.xib; sourceTree = "<group>"; };
+		AC616BA727D99918001218F3 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				AC23E9F727D83CFE00549148 /* ViewController.swift */,
 				AC23EA2527D8B52500549148 /* ChoseContactCell */,
 				AC23EA2327D8B4C800549148 /* ChoseContactViewController.swift */,
+				AC616BA727D99918001218F3 /* ContactViewController.swift */,
 				AC23E9F927D83D0100549148 /* Main.storyboard */,
 				AC23E9FC27D83D0600549148 /* Assets.xcassets */,
 				AC23E9FE27D83D0A00549148 /* LaunchScreen.storyboard */,
@@ -281,6 +284,7 @@
 				AC23E9F427D83CFC00549148 /* AppDelegate.swift in Sources */,
 				AC23E9F627D83CFD00549148 /* SceneDelegate.swift in Sources */,
 				AC23EA2827D8B53B00549148 /* ChoseContactCell.swift in Sources */,
+				AC616BA827D99918001218F3 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

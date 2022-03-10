@@ -152,6 +152,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         openVisionKit()
     }
     
+    @IBAction func tapToOpenContactSystem(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        vc.slectEmail = { [weak self] email in
+            if let email = email {
+                self?.addNewEmail(email: email)
+            }
+            
+        }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func addNewEmail(email: String) {
+        tagsArray.append(email)
+        createTagCloud(OnView: view, withArray: tagsArray as [AnyObject])
+    }
+    
     
     @IBAction func tapToGetContact(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ChoseContactViewController") as! ChoseContactViewController

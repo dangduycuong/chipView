@@ -46,11 +46,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rm-0X-uuh">
-                                <rect key="frame" x="250" y="208" width="99" height="31"/>
+                                <rect key="frame" x="250" y="208" width="129.5" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="My Contact"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Contact Custom"/>
                                 <connections>
                                     <action selector="tapToGetContact:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bYr-sc-pyK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jJ-GA-SoB">
+                                <rect key="frame" x="37.5" y="208" width="127" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Contact System"/>
+                                <connections>
+                                    <action selector="tapToOpenContactSystem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dSi-bB-BGA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -60,12 +68,14 @@
                             <constraint firstItem="uer-Bj-0mq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2dD-Du-jcm"/>
                             <constraint firstItem="gkp-J3-31W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3Ev-R7-SGN"/>
                             <constraint firstItem="tLa-cz-vTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="6fw-BC-P43"/>
+                            <constraint firstItem="uer-Bj-0mq" firstAttribute="leading" secondItem="5jJ-GA-SoB" secondAttribute="trailing" constant="16" id="7ci-Uq-9sG"/>
                             <constraint firstItem="uer-Bj-0mq" firstAttribute="top" secondItem="gkp-J3-31W" secondAttribute="bottom" constant="16" id="Ahg-Q4-3JP"/>
                             <constraint firstItem="tLa-cz-vTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TNG-Xh-gX4"/>
                             <constraint firstItem="5Rm-0X-uuh" firstAttribute="centerY" secondItem="uer-Bj-0mq" secondAttribute="centerY" id="VAT-BS-g4B"/>
                             <constraint firstItem="5Rm-0X-uuh" firstAttribute="leading" secondItem="uer-Bj-0mq" secondAttribute="trailing" constant="16" id="Xm5-IF-tKK"/>
                             <constraint firstItem="gkp-J3-31W" firstAttribute="top" secondItem="tLa-cz-vTK" secondAttribute="bottom" constant="8" id="ZRf-5d-CSc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gkp-J3-31W" secondAttribute="trailing" constant="16" id="jJF-Qa-HZH"/>
+                            <constraint firstItem="uer-Bj-0mq" firstAttribute="centerY" secondItem="5jJ-GA-SoB" secondAttribute="centerY" id="zlu-tk-Jt1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YHM-Ls-J1L"/>
@@ -79,6 +89,67 @@
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="99.776785714285708"/>
         </scene>
+        <!--Contact View Controller-->
+        <scene sceneID="U97-sX-RDx">
+            <objects>
+                <viewController storyboardIdentifier="ContactViewController" id="6zl-V5-Fmc" customClass="ContactViewController" customModule="chipView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sQZ-eG-eaV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOP-qh-pS7">
+                                <rect key="frame" x="141.5" y="432.5" width="131" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="OPEN CONTACT"/>
+                                <connections>
+                                    <action selector="tapShowContacts:" destination="6zl-V5-Fmc" eventType="touchUpInside" id="oKr-5f-ElF"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Eju-od-1ZV">
+                                <rect key="frame" x="16" y="60" width="382" height="77.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRx-wg-CEF">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZp-cL-21k">
+                                        <rect key="frame" x="0.0" y="28.5" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8m-X9-BhY">
+                                        <rect key="frame" x="0.0" y="57" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aB5-nS-Y8s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aB5-nS-Y8s" firstAttribute="trailing" secondItem="Eju-od-1ZV" secondAttribute="trailing" constant="16" id="Jbk-Fi-2b1"/>
+                            <constraint firstItem="Eju-od-1ZV" firstAttribute="leading" secondItem="aB5-nS-Y8s" secondAttribute="leading" constant="16" id="Lhb-7b-XDh"/>
+                            <constraint firstItem="sOP-qh-pS7" firstAttribute="centerX" secondItem="sQZ-eG-eaV" secondAttribute="centerX" id="RUR-Fh-0gg"/>
+                            <constraint firstItem="sOP-qh-pS7" firstAttribute="centerY" secondItem="sQZ-eG-eaV" secondAttribute="centerY" id="g40-7P-rZ8"/>
+                            <constraint firstItem="Eju-od-1ZV" firstAttribute="top" secondItem="aB5-nS-Y8s" secondAttribute="top" constant="16" id="znW-aV-6gF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="O5M-F2-Zuf"/>
+                    <connections>
+                        <outlet property="emailAddressesLabel" destination="N8m-X9-BhY" id="9UP-u2-DTG"/>
+                        <outlet property="givenNameLabel" destination="FRx-wg-CEF" id="wyF-BC-W8T"/>
+                        <outlet property="phoneNumbersLabel" destination="rZp-cL-21k" id="I18-OV-Ylr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1K-MH-ywl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2816" y="100"/>
+        </scene>
         <!--Chose Contact View Controller-->
         <scene sceneID="SEZ-nG-JIX">
             <objects>
@@ -91,7 +162,7 @@
                                 <rect key="frame" x="8" y="52" width="398" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6Yq-hm-i4K">
-                                        <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                        <rect key="frame" x="8" y="8.5" width="24" height="22.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6Yq-hm-i4K" secondAttribute="height" id="ivl-93-OX3"/>
                                         </constraints>
