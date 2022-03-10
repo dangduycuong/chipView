@@ -13,9 +13,6 @@ import PDFKit
 import Contacts
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
-    let mailButton = UIButton()
-    
-    @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
@@ -28,7 +25,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         //Hide Keyboard
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-        setupButton()
+        
+        let navBarHeight = UIApplication.shared.statusBarFrame.size.height +
+                 (navigationController?.navigationBar.frame.height ?? 0.0)
+              print(navBarHeight)
     }
     
     @objc func showMailComposer() {
@@ -58,23 +58,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    func setupButton() {
-        cameraButton.setTitle("", for: .normal)
-        
-        view.addSubview(mailButton)
-        mailButton.backgroundColor = .systemBlue
-        mailButton.addTarget(self, action: #selector(showMailComposer), for: .touchUpInside)
-        mailButton.setTitle(NSLocalizedString("Email me", comment: ""), for: .normal)
-        mailButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .medium)
-        mailButton.setImage(UIImage(named: "icons8-email_send"), for: .normal)
-
-        mailButton.translatesAutoresizingMaskIntoConstraints = false
-        mailButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mailButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        mailButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        mailButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-    }
-    
     func createTagCloud(OnView view: UIView, withArray data: [AnyObject]) {
         
         for tempView in view.subviews {
@@ -84,7 +67,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         var xPos: CGFloat = 15.0
-        var ypos: CGFloat = 130.0
+        var ypos: CGFloat = 160.0
         var tag: Int = 1
         for str in data  {
             let startstring = str as! String
@@ -96,7 +79,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 ypos = ypos + 29.0 + 8.0
             }
             
-            let bgView = UIView(frame: CGRect(x: xPos, y: ypos, width:width + 17.0 + 38.5 , height: 29.0))
+            let bgView = UIView(frame: CGRect(x: xPos, y: ypos, width: width + 17.0 + 38.5 , height: 29.0))
             bgView.layer.cornerRadius = 14.5
             bgView.backgroundColor = UIColor(red: 33.0/255.0, green: 135.0/255.0, blue:199.0/255.0, alpha: 1.0)
             bgView.tag = tag
@@ -115,12 +98,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             button.tag = tag
             button.addTarget(self, action: #selector(removeTag(_:)), for: .touchUpInside)
             bgView.addSubview(button)
-            xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(43.0)
+//            xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(43.0)
+            xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(46.5)
             view.addSubview(bgView)
             tag = tag  + 1
-            topConstraint.constant = ypos
+            topConstraint.constant = ypos - 32 - 29 - 16
         }
-        
     }
     
     @objc func removeTag(_ sender: AnyObject) {
@@ -174,76 +157,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func getAllContacts() {
-//
-//        let status = CNContactStore.authorizationStatus(for: CNEntityType.contacts) as CNAuthorizationStatus
-//
-//        if status == CNAuthorizationStatus.denied {
-//
-//            let alert = UIAlertController(title:nil, message:"This app previously was refused permissions to contacts; Please go to settings and grant permission to this app so it can use contacts", preferredStyle:UIAlertController.Style.alert)
-//            alert.addAction(UIAlertAction(title:"OK", style:UIAlertAction.Style.default, handler: nil))
-//            self.present(alert, animated:true, completion: nil)
-//            return
-//        }
-//
-//        let store = CNContactStore()
-//        store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
-//            if !granted {
-//
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    // user didn't grant access;
-//                    // so, again, tell user here why app needs permissions in order  to do it's job;
-//                    // this is dispatched to the main queue because this request could be running on background thread
-//                })
-//                return
-//            }
-//
-//        })
-//        store.requestAccessForEntityType(CNEntityType.Contacts) { (granted: Bool, error: NSError?) -> Void in
-//
-//            if !granted {
-//
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//
-//                    // user didn't grant access;
-//                    // so, again, tell user here why app needs permissions in order  to do it's job;
-//                    // this is dispatched to the main queue because this request could be running on background thread
-//                })
-//                return
-//            }
-//
-//            let arrContacts = NSMutableArray() // Declare this array globally, so you can access it in whole class.
-//
-//            let request = CNContactFetchRequest(keysToFetch:[CNContactIdentifierKey, CNContactEmailAddressesKey, CNContactBirthdayKey, CNContactImageDataKey, CNContactPhoneNumbersKey, CNContactFormatter.descriptorForRequiredKeysForStyle(CNContactFormatterStyle.FullName)])
-//
-//            do {
-//
-//                try store.enumerateContactsWithFetchRequest(request, usingBlock: { (contact:CNContact, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
-//
-//                    let arrEmail = contact.emailAddresses as NSArray
-//
-//                    if arrEmail.count > 0 {
-//
-//                        let dict = NSMutableDictionary()
-//                        dict.setValue((contact.givenName+" "+contact.familyName), forKey: "name")
-//                        let emails = NSMutableArray()
-//
-//                        for index in 0...arrEmail.count {
-//
-//                            let email:CNLabeledValue = arrEmail.objectAtIndex(index) as! CNLabeledValue
-//                            emails .addObject(email.value as! String)
-//                        }
-//                        dict.setValue(emails, forKey: "email")
-//                        arrContacts.addObject(dict) // Either retrieve only those contact who have email and store only name and email
-//                    }
-//                    arrContacts.addObject(contact) // either store all contact with all detail and simplifies later on
-//                })
-//            } catch {
-//
-//                return;
-//            }
-//        }
-//    }
+    
+    @IBAction func tapToSentEmail(_ sender: Any) {
+        showMailComposer()
+    }
     
 }
 

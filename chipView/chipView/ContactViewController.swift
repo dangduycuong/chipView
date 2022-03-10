@@ -13,6 +13,7 @@ class ContactViewController: UIViewController, CNContactPickerDelegate {
     @IBOutlet weak var givenNameLabel: UILabel!
     @IBOutlet weak var phoneNumbersLabel: UILabel!
     @IBOutlet weak var emailAddressesLabel: UILabel!
+    @IBOutlet weak var selectContactButton: UIButton!
     
     var slectEmail: ((String?) -> ())?
     
@@ -22,10 +23,23 @@ class ContactViewController: UIViewController, CNContactPickerDelegate {
         givenNameLabel.text = ""
         phoneNumbersLabel.text = ""
         emailAddressesLabel.text = ""
+        selectContactButton.isHidden = true
+        
+        let reselect = UIBarButtonItem(title: "Reselect", style: .plain, target: self, action: #selector(reselectContact))
+
+        navigationItem.rightBarButtonItems = [reselect]
+        
+        DispatchQueue.main.async {
+            self.onClickPickContact()
+        }
+    }
+    
+    @objc func reselectContact() {
+        onClickPickContact()
     }
     
     @IBAction func tapShowContacts(_ sender: Any) {
-        onClickPickContact()
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK:- contact picker
@@ -65,6 +79,7 @@ class ContactViewController: UIViewController, CNContactPickerDelegate {
         emailAddressesLabel.text = "\(emailAddresses ?? "nill")"
         if let email = emailAddresses {
             slectEmail?(email as String)
+            selectContactButton.isHidden = false
         }
         
     }

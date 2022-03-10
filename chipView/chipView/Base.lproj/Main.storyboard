@@ -18,71 +18,75 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-J3-31W">
-                                <rect key="frame" x="16" y="152" width="382" height="40"/>
+                                <rect key="frame" x="16" y="104" width="382" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="m4h-T6-Ni6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uer-Bj-0mq">
-                                <rect key="frame" x="180.5" y="208" width="53.5" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="ADD"/>
-                                <connections>
-                                    <action selector="clickToAddTag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZq-a0-Wje"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-cz-vTK">
-                                <rect key="frame" x="16" y="104" width="40" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8I2-G9-5XU">
+                                <rect key="frame" x="16" y="160" width="382" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jJ-GA-SoB">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Contact System"/>
+                                        <connections>
+                                            <action selector="tapToOpenContactSystem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nwj-oh-Sh4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uer-Bj-0mq">
+                                        <rect key="frame" x="158" y="0.0" width="59.5" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="ADD"/>
+                                        <connections>
+                                            <action selector="clickToAddTag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZq-a0-Wje"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rm-0X-uuh">
+                                        <rect key="frame" x="233.5" y="0.0" width="148.5" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Contact Custom"/>
+                                        <connections>
+                                            <action selector="tapToGetContact:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bYr-sc-pyK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="feS-RZ-ZWl"/>
-                                    <constraint firstAttribute="width" constant="40" id="p8z-Gv-hTw"/>
+                                    <constraint firstAttribute="height" constant="40" id="TL5-y9-HLB"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system"/>
-                                <connections>
-                                    <action selector="tapToOpenCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MBS-Gn-Uz6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rm-0X-uuh">
-                                <rect key="frame" x="250" y="208" width="129.5" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Contact Custom"/>
-                                <connections>
-                                    <action selector="tapToGetContact:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bYr-sc-pyK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jJ-GA-SoB">
-                                <rect key="frame" x="37.5" y="208" width="127" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Contact System"/>
-                                <connections>
-                                    <action selector="tapToOpenContactSystem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dSi-bB-BGA"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uer-Bj-0mq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2dD-Du-jcm"/>
                             <constraint firstItem="gkp-J3-31W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3Ev-R7-SGN"/>
-                            <constraint firstItem="tLa-cz-vTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="6fw-BC-P43"/>
-                            <constraint firstItem="uer-Bj-0mq" firstAttribute="leading" secondItem="5jJ-GA-SoB" secondAttribute="trailing" constant="16" id="7ci-Uq-9sG"/>
-                            <constraint firstItem="uer-Bj-0mq" firstAttribute="top" secondItem="gkp-J3-31W" secondAttribute="bottom" constant="16" id="Ahg-Q4-3JP"/>
-                            <constraint firstItem="tLa-cz-vTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TNG-Xh-gX4"/>
-                            <constraint firstItem="5Rm-0X-uuh" firstAttribute="centerY" secondItem="uer-Bj-0mq" secondAttribute="centerY" id="VAT-BS-g4B"/>
-                            <constraint firstItem="5Rm-0X-uuh" firstAttribute="leading" secondItem="uer-Bj-0mq" secondAttribute="trailing" constant="16" id="Xm5-IF-tKK"/>
-                            <constraint firstItem="gkp-J3-31W" firstAttribute="top" secondItem="tLa-cz-vTK" secondAttribute="bottom" constant="8" id="ZRf-5d-CSc"/>
+                            <constraint firstAttribute="trailing" secondItem="8I2-G9-5XU" secondAttribute="trailing" constant="16" id="5NP-bN-MOE"/>
+                            <constraint firstItem="gkp-J3-31W" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Hoc-Pj-lmz"/>
+                            <constraint firstItem="8I2-G9-5XU" firstAttribute="top" secondItem="gkp-J3-31W" secondAttribute="bottom" constant="16" id="ZWK-JJ-swh"/>
+                            <constraint firstItem="8I2-G9-5XU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ds1-bG-pHw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gkp-J3-31W" secondAttribute="trailing" constant="16" id="jJF-Qa-HZH"/>
-                            <constraint firstItem="uer-Bj-0mq" firstAttribute="centerY" secondItem="5jJ-GA-SoB" secondAttribute="centerY" id="zlu-tk-Jt1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YHM-Ls-J1L"/>
+                    <navigationItem key="navigationItem" id="YHM-Ls-J1L">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7OM-qB-t3S"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icons8-email_send" id="9Jl-XF-BVG">
+                                <connections>
+                                    <action selector="tapToSentEmail:" destination="BYZ-38-t0r" id="2IA-ej-Cr3"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="camera" id="Hu1-rX-Kgy">
+                                <connections>
+                                    <action selector="tapToOpenCamera:" destination="BYZ-38-t0r" id="oUR-Uw-ciw"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
-                        <outlet property="cameraButton" destination="tLa-cz-vTK" id="Isb-zd-czl"/>
                         <outlet property="inputTextField" destination="gkp-J3-31W" id="3xf-Tn-PtW"/>
-                        <outlet property="topConstraint" destination="Ahg-Q4-3JP" id="3VQ-m0-h90"/>
+                        <outlet property="topConstraint" destination="ZWK-JJ-swh" id="QpX-Xf-wzI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -98,9 +102,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOP-qh-pS7">
-                                <rect key="frame" x="141.5" y="432.5" width="131" height="31"/>
+                                <rect key="frame" x="135" y="432.5" width="144.5" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="OPEN CONTACT"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SELECT CONTACT"/>
                                 <connections>
                                     <action selector="tapShowContacts:" destination="6zl-V5-Fmc" eventType="touchUpInside" id="oKr-5f-ElF"/>
                                 </connections>
@@ -144,6 +148,7 @@
                         <outlet property="emailAddressesLabel" destination="N8m-X9-BhY" id="9UP-u2-DTG"/>
                         <outlet property="givenNameLabel" destination="FRx-wg-CEF" id="wyF-BC-W8T"/>
                         <outlet property="phoneNumbersLabel" destination="rZp-cL-21k" id="I18-OV-Ylr"/>
+                        <outlet property="selectContactButton" destination="sOP-qh-pS7" id="dpg-HI-P2O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1K-MH-ywl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -245,7 +250,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="icons8-email_send" width="24" height="24"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
