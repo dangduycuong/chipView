@@ -42,7 +42,7 @@ class ChoseContactViewController: UIViewController, UITableViewDelegate, UITable
         searchView.layer.cornerRadius = 16
         
         searchView.layer.shadowColor = UIColor.black.cgColor
-        searchView.layer.shadowOpacity = 0.8
+        searchView.layer.shadowOpacity = 0.35
         searchView.layer.shadowOffset = .zero
         searchView.layer.shadowRadius = 10
     }
@@ -73,13 +73,10 @@ class ChoseContactViewController: UIViewController, UITableViewDelegate, UITable
                         item.lastName = contact.familyName
                         item.telephone = contact.phoneNumbers.first?.value.stringValue
                         
-                        for email in contact.emailAddresses{
-                            if let emailAddresses = email.value as? String {
-                                item.emailAddresses = emailAddresses
-                                print("This contact already has this email", emailAddresses)
-                                return
-                            }
-                        }
+                        let emailAddresses = contact.emailAddresses.first?.value
+                        let email = "\(String(describing: emailAddresses))"
+                        item.emailAddresses = email
+                        
                         self.contacts.append(item)
                         self.suggestContacts.append(item)
                         //                        self.contacts.append(FetchedContact(firstName: contact.givenName, lastName: contact.familyName, telephone: contact.phoneNumbers.first?.value.stringValue ?? "", iconContact: contact.imageData))
@@ -91,7 +88,7 @@ class ChoseContactViewController: UIViewController, UITableViewDelegate, UITable
                 print("access denied")
             }
         }
-        //        suggestContacts = contacts
+//                suggestContacts = contacts
         tableView.reloadData()
     }
     

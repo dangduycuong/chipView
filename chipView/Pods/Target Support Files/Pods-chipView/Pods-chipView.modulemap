@@ -1,0 +1,6 @@
+framework module Pods_chipView {
+  umbrella header "Pods-chipView-umbrella.h"
+
+  export *
+  module * { export * }
+}

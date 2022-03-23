@@ -11,11 +11,13 @@ import SafariServices
 import VisionKit
 import PDFKit
 import Contacts
+import Material
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var inputTextField: UITextField!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    var oldConstraint: CGFloat = 0.0
     var tagsArray = [String]()
     var fileName: String = ""
     
@@ -27,8 +29,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         view.addGestureRecognizer(tap)
         
         let navBarHeight = UIApplication.shared.statusBarFrame.size.height +
-                 (navigationController?.navigationBar.frame.height ?? 0.0)
-              print(navBarHeight)
+        (navigationController?.navigationBar.frame.height ?? 0.0)
+        print(navBarHeight)
+        prepareEmailField()
+        oldConstraint = topConstraint.constant
+        inputTextField.keyboardType = .emailAddress
+        
+        addNewEmail(email: "duycuongkma@gmail.com")
+        addNewEmail(email: "email_nearest_2@gmail.com")
+        addNewEmail(email: "email_nearest_3@gmail.com")
+        addNewEmail(email: "email_nearest_4@gmail.com")
+        addNewEmail(email: "email_nearest_5@gmail.com")
     }
     
     @objc func showMailComposer() {
@@ -98,10 +109,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             button.tag = tag
             button.addTarget(self, action: #selector(removeTag(_:)), for: .touchUpInside)
             bgView.addSubview(button)
-//            xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(43.0)
+            //            xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(43.0)
             xPos = CGFloat(xPos) + CGFloat(width) + CGFloat(17.0) + CGFloat(46.5)
             view.addSubview(bgView)
             tag = tag  + 1
+            oldConstraint = topConstraint.constant
             topConstraint.constant = ypos - 32 - 29 - 16
         }
     }
@@ -109,6 +121,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @objc func removeTag(_ sender: AnyObject) {
         tagsArray.remove(at: (sender.tag - 1))
         createTagCloud(OnView: self.view, withArray: tagsArray as [AnyObject])
+        topConstraint.constant = oldConstraint
     }
     
     
@@ -160,6 +173,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func tapToSentEmail(_ sender: Any) {
         showMailComposer()
+    }
+    
+    
+    @IBAction func tapToShowPDF(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PDFViewController") as! PDFViewController
+        vc.fileName = fileName
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -258,6 +278,71 @@ extension ViewController: UIDocumentPickerDelegate, VNDocumentCameraViewControll
     
 }
 
+extension ViewController: UITextFieldDelegate {
+    fileprivate func prepareEmailField() {
+//        inputTextField.placeholder = "Email"
+//        inputTextField.detail = "Error, incorrect email"
+//        inputTextField.isClearIconButtonEnabled = true
+//        inputTextField.isPlaceholderUppercasedWhenEditing = true
+//        inputTextField.placeholderAnimation = .hidden
+        
+        // Set the colors for the emailField, different from the defaults.
+        //        emailField.placeholderNormalColor = Color.amber.darken4
+        //        emailField.placeholderActiveColor = Color.pink.base
+        //        emailField.dividerNormalColor = Color.cyan.base
+        //        emailField.dividerActiveColor = Color.green.base
+        // Set the text inset
+        //        emailField.textInset = 20
+        
+//        let leftView = UIImageView()
+//        leftView.image = Icon.cm.audio
+//        inputTextField.leftView = leftView
+//
+//        view.layout(inputTextField).center(offsetY: -inputTextField.bounds.height - 60).left(20).right(20)
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+//        let label = UILabel()
+//        if isValidEmail(textField.text ?? "") == false {
+//
+//            label.text = "error"
+//            label.textColor = .red
+//            inputTextField.layout(label)
+//                .centerX()
+//                .below(inputTextField, 0)
+//
+//        } else {
+//            label.removeFromSuperview()
+//        }
+        if let text = textField.text, text.contains(" ") {
+            let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            addNewEmail(email: trimmed)
+            textField.text = ""
+        }
+        
+    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        (textField as? ErrorTextField)?.isErrorRevealed = false
+//    }
+//
+//    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+//        (textField as? ErrorTextField)?.isErrorRevealed = false
+//        return true
+//    }
+//
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        (textField as? ErrorTextField)?.isErrorRevealed = true
+//        return true
+//    }
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+}
+
 extension String {
     
     func widthOfString(usingFont font: UIFont) -> CGFloat {
@@ -288,12 +373,12 @@ public struct DocumentModel {
 
 extension UIImage {
     open var width: CGFloat {
-      return size.width
+        return size.width
     }
     
     /// Height of the UIImage.
     open var height: CGFloat {
-      return size.height
+        return size.height
     }
     
     func resizedImage() -> UIImage {
@@ -334,10 +419,10 @@ extension UIImage {
     }
     
     func detechTextFormImage(complettion: ((String?, Error?) -> Void)?) {
-//        let visionImage = VisionImage(image: self)
-//        let textRecognizer = TextRecognizer.textRecognizer()
-//        textRecognizer.process(visionImage) { result, error in
-//            complettion?(result?.text, error)
-//        }
+        //        let visionImage = VisionImage(image: self)
+        //        let textRecognizer = TextRecognizer.textRecognizer()
+        //        textRecognizer.process(visionImage) { result, error in
+        //            complettion?(result?.text, error)
+        //        }
     }
 }
